@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bbou.domain.dao.CategoryMapper">
+	<select id="findAllByParentNo">
+		select * from category
+		where 1=1
+		<if test="parentNo != 0">
+		AND parent_no = #{parentNo}
+		</if>
+		<if test="parentNo == 0">
+		AND parent_no is null
+		</if>
+		order by name
+	</select>
+	
+</mapper>

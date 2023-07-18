@@ -1,0 +1,122 @@
+@charset "UTF-8";
+/* ////////////////////////////////////////////////////////////////////// */
+/* //////////////////////goods-write start//////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
+
+#goods-write > div > form > ul > li{
+	border-top: 1px solid #a9a9a9;
+	padding: 20px 0;
+}
+
+#goods-write > div > form > ul > li label{
+	display: block;
+	font-weight: 700;
+}
+
+#goods-write > div > form > ul > li pre{
+	font-size:  10px;
+	color: rgba(102,52,0,1);
+	letter-spacing: -0.5px;
+}
+
+#goods-write > div > form > ul > li input[type=file]{
+	display: none;
+}
+
+/* 업로드된 이미지 백그라운드로 불러오기 */
+#goods-write .pre-img{
+	background-image: url("");
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+}
+#goods-write .pre-img{
+	display :block;
+	width: 100px;
+	height: 100px;
+}
+
+#goods-write .pre-img::before{
+	content: "+" ;
+	display : flex;
+	justify-content : center;
+	align-items: center; 
+	width : 100px;
+	height: 100px;
+	background-color: rgba(102,52,0,0.05);
+	border: 1px dotted #e9e9e9;
+} 
+
+
+
+
+/* //////////////////////////goods-write end//////////////////////////// */
+
+
+#category .sub>select>option:first-child {
+	display: none;
+}
+
+/* goodsdetail */
+.img-area{
+	position : relative;
+	width: 500px;
+	height: 610px;
+	display: flex;
+	align-items: flex-end;
+	border : 1px solid #e9e9e9;
+}
+.img-area ol .img.def{
+	position: absolute;
+	top:0;
+	left : 0;
+	width: 500px;
+	height: 500px;
+}
+.img-area ol .img{
+	width : 100px;
+	height : 100px;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+}
+
+
+#detail > div > div.flex > ul > li> span {
+	display: inline-block;
+	
+	
+}
+
+#detail > div > div.flex > ul > li > button{
+	
+	border : 1px solid #e9e9e9;
+	width: 235px;
+	height: 55px;
+	background-color: rgba(102,52,0,0.5);
+	color : #fff;
+}
+
+
+#detail > div > div > ul > li.detail-content > textarea {
+	width: 500px;
+	height: 200px
+}
+
+#detail > div > div.flex > ul > li:nth-child(1){
+	font-size: 30px;
+	font-weight: bold;
+	margin-bottom: 80px;
+}
+
+#detail > div > div.flex > ul > li{
+	padding : 10px;
+	
+}
+
+#detail > div > div > ul > li > i > input[type=number]{
+    height: 30px;
+    font-size: 20px;
+    width: 50px;
+
+}

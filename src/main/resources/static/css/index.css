@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+/* 한줄에 표시할 이미지 개수  */
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 10px;
+  background-color: rgba(102,52,0,0.05);
+  padding: 10px;
+}
+
+#menu > .wrap{
+	background-color: #a9a9a9;
+}
+
+#gnb>dl{
+	height: 40px;
+	width : 40px;
+	position: relative;
+}
+#gnb>dl>dt{
+	display: flex;
+	align-items: center;
+}
+
+#gnb>dl>dd{
+	position: absolute;
+	top: 39px;
+	z-index: 100;
+	width: 150px;
+}
+
+#gnb-list {
+	background-color: rgba(255,255,255,1);
+	padding: 10px 0px;
+	
+}
+
+#gnb-list ul li {
+	padding : 10px;
+	position: relative;
+}
+
+
+
+main > .wrap {
+	margin : 50px;
+}
+
+#goods > div > ul > li > img{
+	max-width: 100%
+}
+
+#goods > div > ul > li > div > p:nth-child(1){
+	font-weight: bold;
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="//www.thymeleaf.org" 
+	  xmlns:sec="//www.thymeleaf.org/extras/spring-security">
+	  <link rel="stylesheet" href="/css/common.css">
+<header>
+	<h1>상단영역</h1>
+	<div class="wrap between header-top">
+		<div class="wrap flex">
+			<a href="/">
+			 <span class="logo-style1">
+					<div>
+						<i>B</i> <i>B</i> <i>O</i> <i>U</i>
+					</div>
+			</span> 
+			<span class="logo-style2">
+					<div>
+						<i>C</i> <i>o</i> <i>f</i> <i>f</i> <i>e</i> <i>e</i>
+					</div>
+			</span>
+			</a>
+		</div>
+		<div class="flex">
+			<th:block sec:authorize="isAuthenticated()">
+				<!-- <span sec:authentication="authorities">SimpleGrantedAuthority</span> -->
+				<span sec:authorize="hasRole('ADMIN')"
+					th:text="${T(com.bbou.security.MyRole).ADMIN.koName}"></span>
+				<span> ID : <span sec:authentication="name">로그인ID(이메일)</span>
+					(<span sec:authentication="principal.name"></span>)
+				</span>
+				<form action="/logout" method="post" style="display: inline-block;">
+					<input type="hidden" th:if="${_csrf}"
+						th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+					<button>로그아웃</button>
+				</form>
+			</th:block>
+		</div>
+	</div>
+	<div class="header-left">
+			<div class="wrap">
+				<div id="admin">
+					<a href="/admin">ADMIN-HOME</a>
+				</div>
+
+				<!-- /////////////////////////////////////////////////// -->
+				<!-- js/admin/menu.js - menuItemClicked() 비동기로 처리 ////-->
+				<!-- /////////////////////////////////////////////////// -->
+				<dl class="menu-wrap">
+					<dt class="menu">
+						<span>카테고리</span>
+					</dt>
+					<dd>
+						<div>
+							<a href="/admin/category/new">등록하기</a>
+						</div>
+						<div>
+							<a href="/admin/category">조회 및 수정</a>
+						</div>
+					</dd>
+				</dl>
+				<dl class="menu-wrap">
+					<dt class="menu">
+						<span>상품관리</span>
+					</dt>
+					<dd>
+						<div>
+							<a href="/admin/goods/new">등록하기</a>
+						</div>
+						<div>
+							<a href="/admin/goods/">조회 및 수정</a>
+						</div>
+					</dd>
+				</dl>
+				
+			</div>
+	</div>
+</header>
+
+</html>

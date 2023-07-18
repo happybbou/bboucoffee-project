@@ -1,0 +1,87 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Noto+Sans+KR:wght@400;700&family=Roboto:wght@400;700&display=swap');
+body{
+	font-family: 'Lilita One', cursive; 
+	font-family: 'Noto Sans KR','Roboto', sans-serif;
+}
+
+*{padding : 0; margin : 0; box-sizing: border-box;}
+li{list-style: none;}
+i{font-style: normal;}
+a{text-decoration: none; color: #222}
+h1{position: absolute; left : -99999999px; font-size: 0}
+button{border : none;background: none;}
+body{
+	color: #222;
+	font-family: 'Noto Sans KR', 'Roboto';
+}
+
+/* ///////////////////////////////////////////////////////////// */
+
+.flex{display: flex;}
+.right{justify-content: flex-end;} /* 오른쪽정렬 */
+.center{justify-content: center;}
+.between{justify-content: space-between;}
+.col-center{align-items: center;}
+
+/* ///////////////////////////////////////////////////////////// */
+.view-size{width: 1080px; margin: 0 auto;}
+.view-size-t{width: 720px; margin: 0 auto;} /* 태블릿 */
+.view-size-m{width: 480px; margin: 0 auto;} /* 모바일 */
+.tit{font-weight: bold; font-size:18px;}
+
+
+.logo-style{
+	font-size: 24px;
+	font-weight: 700;
+	font-family: 'Roboto';
+}
+.logo-style1 i{ 
+	position : relative;
+	display: inline-flex; /* 인라인 플렉스에는 센터 세로정렬 가능 */
+	justify-content : center;
+	align-items : center;
+	width: 32px;
+	height: 32px;
+	color: rgba(255,255,255,0.9)
+	
+}
+.logo-style2 i{ 
+	position : relative;
+	display: inline-flex; /* 인라인 플렉스에는 센터 세로정렬 가능 */
+	justify-content : center;
+	align-items : center;
+	width: 32px;
+	height: 32px;
+	color: rgba(255,255,255,0.9)
+	
+}
+.logo-style1 i::before{
+	position : absolute;
+	top:0;
+	left:0;
+	z-index : -1;
+	content:"";
+	display : block;
+	background-color: rgba(102,52,0,0.5);  /*   #d5eaff  */
+	width: 32px;
+	height: 32px;
+	transform : rotate(45deg);
+	border-radius: 10px;
+}
+.logo-style2 i::before{
+	position : absolute;
+	top:0;
+	left:0;
+	z-index : -1;
+	content:"";
+	display : block;
+	background-color:rgba(102,52,0,1);  /*   #d5eaff  */
+	width: 32px;
+	height: 32px;
+	transform : rotate(45deg);
+	border-radius: 10px;
+}
+
+
+

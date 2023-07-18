@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html  xmlns:th="//www.thymeleaf.org" 
+	th:replace="~{layout/layout-common :: layout(~{::head}, ~{::main})}">
+	<head>
+	<link rel="stylesheet" href="/css/board/board.css">
+	<script type="text/javascript">
+			$(function(){
+				$("form").submit(function(event){ /*엔터키 눌렀을때 페이지 리셋안되게 설정 */
+					event.preventDefault();
+				})
+				$("#btn-search").click(function(){
+					btnSearchClicked(1);
+				});
+			/* 	restBoardList(1) */
+			});
+			
+			function btnSearchClicked(page){
+				var token = $("meta[name='_csrf']").attr("content");
+				var header = $("meta[name='_csrf_header']").attr("content");
+				$(document).ajaxSend(function(e, xhr, options) {
+					xhr.setRequestHeader(header, token);
+				});
+				
+				var data=$("#form-search").serialize()+"&page="+page;
+					$.ajax({
+					url:"/rest-boards/search",
+					type: "PATCH" ,  /* 제이쿼리 라이브러리에서 히든 파라미터 patch로 자동으로 보내줌 */
+					data:data,  /* columnName, query 필요 > serialize() 사용시 한번에 가져옴 */
+					success:function(result){
+						$("#board-list").html(result)
+					}
+					
+				});
+			}
+			
+			
+			/* function restBoardList(page){
+				
+				$.ajax({
+					url:"/rest-boards",
+					type: "PATCH" ,   제이쿼리 라이브러리에서 히든 파라미터 patch로 자동으로 보내줌 
+					data:{page:page},
+					success:function(result){
+						$("#board-list").html(result)
+					}
+					
+				});
+			} */
+			
+		</script>
+	</head>
+	<main>
+		<h1>고객센터 게시글리스트</h1>
+		<div class="write">
+			<a href="/boards/write">글쓰기</a>
+		</div>
+		<hr>
+		<div>
+			<form id="form-search">
+				<select name="columnName">
+					<option value="1">제목</option>
+					<option value="2">내용</option>
+					<option value="4">작성자</option>
+					<option value="3">제목+내용</option>
+					<option value="5">제목+작성자</option>
+					<option value="6">내용+작성자</option>
+					<option value="7">제목+내용+작성자</option>
+				</select>
+			 	<input type="search" name="query" placeholder="검색어를 입력하세요">
+			 	<button type="button" id="btn-search">검색</button>
+			 </form>
+		</div>
+		<ul  id="board-list">
+			<li class="flex">
+				<div>글번호</div>
+				<div>제목</div>
+				<div>조회수</div>
+				<div>작성자</div>
+				<div>작성일</div>
+			</li>
+			<li th:each="dto:${list}" class="flex">
+				<div >
+					<a th:href="${'/boards/'+dto.no}" th:text="${dto.no}"></a>
+				</div>
+				<div th:text="${dto.title}">제목</div>
+				<div th:text="${dto.readCount}">조회수</div>
+				<div th:text="${dto.writer}">작성자</div>
+				<div th:text="${dto.updatedDate}">작성일</div>
+			</li>
+			<!-- <li th:if="${#lists.isEmpty(list)}"> list 가 비어있으면 true
+				<div colspan="5" style="text-align: center;">게시글이 존재하지 않습니다.</div>
+			</li> -->
+		</ul>
+		<!-- 페이지 하단에 페이지 번호 출력 -->
+		<div class="num" th:unless="${#lists.isEmpty(list)}" style="display: flex">
+			<!-- 페이지 하단에 페이지번호 출력 -->
+				<div th:if="${pd.from gt 1}"> <!-- to < tot 표현  -->
+					<a th:href="|/boards?page=${pd.from-1}|" >&lt;</a>
+				</div>
+				<div  th:each="page : ${#numbers.sequence(pd.from,pd.to)}">   <!-- from번부터 to번까지 집합 -->
+					<a class="pnum" th:href="|/boards?page=${page}|" th:text="${page}">  페이지번호  </a> <!-- 문자열병합 표시도 필요 || -->
+					
+				</div>
+				<div th:if="${pd.to lt pd.tot}"> <!-- to < tot 표현  -->
+					<a th:href="|/boards?page=${pd.to+1}|" >&gt;</a>
+				</div>
+			</div>
+
+</main>
+</html>

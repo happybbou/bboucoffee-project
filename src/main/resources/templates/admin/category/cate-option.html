@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="//www.thymeleaf.org">
+
+	<select name="parentNo" onchange="category2List(this)">
+		<option th:unless=${parent} value="">최상위카테고리</option> <!-- 부모카테고리가 없으면 표시 -->
+		<!-- 비워놓으면 null 로 매핑 -->
+		<th:block th:each="dto:${list}">
+			
+			<option th:value="${dto.no}" th:text="${dto.name}">카테고리명</option>
+		</th:block>
+		
+	</select>
+	<span th:unless="${#lists.isEmpty(list)}" class="sub"> 
+	</span>
+</html>

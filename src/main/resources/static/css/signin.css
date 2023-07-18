@@ -1,0 +1,156 @@
+@charset "UTF-8";
+*{box-sizing: content-box;}
+input{border: none;outline: none;}
+h1 {display: none;}
+
+.bod > div:nth-child(1){
+	text-align: center;
+}
+
+body > main > div > div:nth-child(3) > div{
+	text-align: center;
+    color: red;
+    font-size: 12px;
+}
+.wrap > .logoo {
+    font-size: 50px;
+    font-weight: 900;
+    text-align: center;
+    font-weight: 700;
+	font-size: 50px;
+	
+}
+
+/* 테두리 보더, 로그인폼 가운데에 위치 */
+.bod{
+	/* top: 50%;
+    left: 50%; */
+    position : absolute;
+    transform: translate(100%, 27%);
+	border: 1px solid rgba(102,52,0,1);
+	border-radius: 10px;
+	width: 30%	
+	}
+	
+/* 이메일, 비밀번호 상자*/ 
+.in-box{
+	padding: 10px 14px;
+	border: 1px solid #a9a9a9;
+	border-radius : 2px;
+	display: flex;
+	justify-content: space-between;
+	width: 80%
+	
+}
+
+ /*로그인 버튼 */
+.btn-st {
+    display: inline-block;
+    width: 60%;
+    padding: 15px 0 15px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius : 2px;
+}
+
+/* 회원가입버튼 색 */
+.btn-st{
+	color: white;
+	background-color:rgba(103,40,0,0.5);
+	
+}
+body > main > div > div:nth-child(3) > form > div:nth-child(3) > button{
+	margin-top: 16px;
+    margin-bottom: 32px;
+}
+
+.in-title{
+	font-weight: 700;
+	position: relative;
+	/* padding: 1.5em 0 0.5em; */
+}
+
+
+.in-title > label {
+    position: absolute;
+    top: -61%;
+    width: 200px;
+}
+body > main > div > div:nth-child(3) > form > div > p > input{
+	width: 100%;
+}
+
+/* 
+.log > ul > li:not(.last) > input{
+	height: 30px;
+	border-radius: 5px;
+}
+
+.log > ul > div > li{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+body > main > div > div > form > ul > div  {
+	text-align: center
+}
+body > main > div > div:nth-child(3) > form > ul > li > input{
+	width: 100%;
+} */
+
+.submit{
+	display: inline-block;
+}
+.log > .wrap{
+	display: flex;
+	justify-content: center;
+	margin-top: 35px;
+	
+}
+
+/*	
+ err메세지 가운데정렬 
+.bod > .err{
+	text-align: center;
+	display: flex;
+	justify-content: center;
+}
+ 에러메세지 색, 
+.bod > .err > p {
+	font-size: 12px;
+	color: white; 
+	border : 3px solid #0000a0;
+	background-color: #0000a0; 
+	border-radius: 10px;	
+	width:60%;
+}
+
+ 인터파크 로고 가운데정렬, 크기조정 
+.wrap > a >img{
+	width: 200px;
+	height: 100px;
+	display: block;
+	margin: auto;
+}
+
+
+ 텍스트박스 크기 box 크기와 일치시키기 
+body > div > form > div > p > input {
+	width: 100%;
+}
+
+
+
+
+ 텍스트상자, 로그인버튼 가운데정렬 
+.log > .wrap{
+	display: flex;
+	justify-content: center;
+	
+}
+ 로그인 버튼위아래 패딩 
+body > div > form > div:nth-child(3) {
+	padding-top : 16px;
+	padding-bottom: 32px;
+}*/

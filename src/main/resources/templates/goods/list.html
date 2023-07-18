@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+	<ul class="grid-container">
+		<li th:each="dto:${list}" th:value="${dto.no}" th:onclick="|goodsDetail(${dto.no})|">
+			<img th:src="${dto.defImg}" height="300px;">
+			<div>
+				<p th:text="${dto.title}"></p>
+				<p th:text="${dto.price}"></p>
+				<p th:if="${dto.stock>0}">주문가능</p>
+			</div>
+		</li>
+	</ul>
+</html>

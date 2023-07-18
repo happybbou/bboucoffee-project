@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="//www.thymeleaf.org" 
+	  xmlns:sec="//www.thymeleaf.org/extras/spring-security">
+	  <link rel="stylesheet" href="/css/common.css">
+	  <link rel="stylesheet" href="/css/header.css">
+	<header>
+		<h1>상단영역</h1>
+		<div class="header-left">
+			<section id = "user-area">
+				<div class="wrap flex between ">
+					<div class="wrap">
+						<h1>로고영역</h1>
+						<a href="/">
+								<span class="logo-style1">
+									<div>
+										<i>B</i>
+										<i>B</i>
+										<i>O</i>
+										<i>U</i>
+									</div>
+								</span>
+								<span class="logo-style2">
+									<div>
+										<i>C</i>
+										<i>o</i>
+										<i>f</i>
+										<i>f</i>
+										<i>e</i>
+										<i>e</i>
+									</div>
+								</span>
+							</a>
+					</div>
+					<div class="wrap">
+						<h1>유저영역</h1>
+							<th:block sec:authorize="isAnonymous()">
+								<a href="/signin">로그인</a>
+								<a href="/signup">회원가입</a>
+							</th:block>
+							<th:block sec:authorize="isAuthenticated()">
+								<!-- <span sec:authentication="authorities">SimpleGrantedAuthority</span> -->
+			
+								<span sec:authorize="hasRole('ADMIN')"
+									th:text="${T(com.bbou.security.MyRole).ADMIN.koName}"></span>
+								<span sec:authorize="hasRole('USER')and !hasRole('ADMIN')"
+									th:text="${T(com.bbou.security.MyRole).USER.koName}"></span>
+								<span> ID : <span sec:authentication="name">로그인ID(이메일)</span>
+									(<span sec:authentication="principal.name"></span>)
+								</span>
+			
+								<form action="/logout" method="post" style="display: inline-block;">
+									<input type="hidden" th:if="${_csrf}"
+										th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+									<button>로그아웃</button>
+								</form>
+							</th:block>
+					</div>
+				</div>
+			</section>
+			<div class="wrap ">
+			<navi id="gnb">
+			<h1>메뉴영역</h1>
+			<div class="wrap">
+				<ul id="catemenu" class="flex">
+					<li><a href="#">메뉴1</a></li>
+					<li><a href="#">메뉴2</a></li>
+					<li><a href="#">메뉴3</a></li>
+					<li><a href="#">메뉴4</a></li>
+					<li><a href="#">메뉴5</a></li>
+				</ul>
+			</div>
+			<div>
+			</navi>
+			
+			<section id="board">
+						<h1>커뮤니티</h1>
+							<div class="wrap flex">
+								<div class="wrap ">
+									<a href="/boards">고객게시판</a>
+								</div>
+								<div class="wrap" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+									<a sec:authorize="hasRole('ADMIN')" href="/admin">관리자페이지</a>
+								</div>
+							</div>
+					</section>
+				</div>
+			</div>
+		</div>
+	</header>
+
+</html>

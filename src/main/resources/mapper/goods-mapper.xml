@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--선언 해주어야 mapper태그 사용가능  -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bbou.domain.dao.GoodsMapper">
+	<!-- goods 테이블에 데이터 저장 후 auto_increament된 no의 pk 값을 GoodsSaveDTO에도 저장 -->
+	<insert id="save" useGeneratedKeys="true" keyProperty="no" parameterType="com.bbou.domain.dto.admin.CategorySaveDTO">
+		insert into goods(title,price,on_sale,vat,stock,content)
+		values(#{title},#{price},#{onSale},#{vat},#{stock},#{content}) 
+	</insert>
+	
+	<insert id="saveImage">
+		insert into goods_image(bucket_key, org_name, def, gno)
+		values(#{bucketKey}, #{orgName}, #{def}, #{gno})
+	</insert>
+	
+	<!-- 인덱스에 리스트 불러오기 -->
+	<select id="findAll" resultType="com.bbou.domain.dto.admin.GoodsListDTO">
+		select * from goods g
+		join goods_image i on g.no=i.gno
+		where i.def=1
+	</select>
+	
+	<select id="findByCategoryNo" resultType="com.bbou.domain.dto.admin.GoodsListDTO">
+		select * from goods g
+		join goods_image i on g.no=i.gno
+		where i.def=1
+			and g.no IN
+				(select gc.gno as gno
+				from goods_category gc
+				join category c on gc.cno=c.no
+				where c.no=#{categoryNo}
+					or c.parent_no=#{categoryNo})
+	</select>
+	<select id="detail" resultType="com.bbou.domain.dto.admin.GoodsDetailDTO">
+		select * 
+		from goods
+		where no=#{goodsNo}
+	</select>
+	<select id="goodsImagesForByDetailNo" resultType="com.bbou.domain.dto.admin.GoodsImgListDTO">
+		select *
+		from goods_image
+		where gno=#{goodsNo}
+	</select>
+	
+</mapper>

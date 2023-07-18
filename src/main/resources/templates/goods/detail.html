@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="//thymeleaf.org">
+<section id="detail">
+	<h1>상세페이지</h1>
+	<div class="wrap">
+		<div class="flex">
+			<div class="img-area">
+				<ol class="flex">
+					<th:block th:each="img :${imgs}">
+						<li class="img" th:classappend="${img.def} ? 'def'"
+							th:style="|background-image: url('${img.url}');|"
+							onclick="changeDef(this)"></li>
+					</th:block>
+				</ol>
+			</div>
+			<ul class="detail-info">
+				<li th:text="${detail.title}">타이틀</li>
+				<li class="flex between">
+					<span>판매가격</span>
+					<i>
+						<span th:text="${#numbers.formatInteger(detail.price,3,'COMMA')}"></span>
+						<span>원</span>
+					</i>
+				</li>
+				<li class="flex between">
+					<span>구매수량</span>
+					<i>
+						<input type="number" value="1">
+						<span>개</span>
+					</i>
+				</li>
+				<li class="flex between">
+					<span>배송비</span>
+					<i>
+						<span th:text="${#numbers.formatInteger(3000,3,'COMMA')}"><span>원</span></span>
+					</i>
+				</li>
+				<li class="flex between">
+					<span>구매금액</span>
+					<i>
+						<span id="pay-amount" th:text="${#numbers.formatInteger(3000+detail.price,3,'COMMA')}"><span>원</span></span>
+					</i>
+				</li>
+				<li class="detail-content">
+					<textarea>[(${detail.content})]</textarea>
+				</li>
+				<li>
+					<input class="name" type="hidden" th:value="${detail.title}">
+					<input class="amount" type="hidden" th:value="${3000+detail.price}">
+					<button type="button">장바구니</button>
+					<button type="button" onclick="pay(this)">구매하기</button>
+				</li>
+			</ul>
+		</div>
+		
+	</div>
+</section>
+</html>

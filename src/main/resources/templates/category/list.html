@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<!--메뉴호버시 나오는 리스트  -->
+<html>
+	<ul class="cate-wrap">
+		<li class="cate" th:each="dto:${list}"  th:value = "${dto.no}" > <!-- onmouseenter="cateHover(this)" onmouseleave="cateHoverOut(this)" -->
+			<div class="cate-name">
+				<a th:href="|/category/${dto.no}/goods|" th:text="${dto.name}" onclick="event.preventDefault(), goodsListOfCategoryNo(this)"></a>
+			</div>
+			<div class="sub">
+			</div>
+		</li>
+	</ul>
+	
+</html>

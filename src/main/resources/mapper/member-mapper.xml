@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bbou.domain.dao.MemberMapper">
+	<insert id="save" parameterType="com.bbou.domain.dto.MemberDTO" useGeneratedKeys="true" keyProperty="no">
+		insert into member(id, password ,name)
+		values( #{id},#{password},#{name})
+	</insert>
+	
+	<resultMap id="logResult" type="com.bbou.domain.dto.MemberDTO">
+		<id column="no" property="no"/>
+		<result column="id" property="id"/>
+		<result column="password" property="password"/>
+		<result column="name" property="name"/>
+		<collection property="roles" ofType="com.bbou.security.MyRole">
+			<result column="roles" property="roleName"/>
+		</collection>
+		
+	</resultMap>
+	<select id="findById" resultMap="logResult">
+		select m.*, r.* from member m 
+		LEFT JOIN member_role r
+		ON m.no = r.member_no
+		where id=#{id}
+	</select>
+	
+	<!-- ID 중복 확인 -->
+	<select id="idCheck"  resultType="int">
+		SELECT COUNT(id) FROM member WHERE id= #{id}
+	</select>
+</mapper>

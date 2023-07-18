@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html  xmlns:th="//www.thymeleaf.org" >
+	<section id="goods-write" >
+		<h1>상품등록</h1>
+		<div class="wrap">
+			<p>상품등록 페이지</p>
+			<hr>
+			<form id="form-goods">
+				<ul>
+					<li>
+						<label>카테고리</label>
+						<div class="category">
+							카테고리
+						</div>
+					</li>
+					<li>
+						<label>상품명</label>
+						<input type="text" name="title">
+						<div>
+							<pre><!-- 
+								 -->판매 상품과 직접 관련이 없는 다른 상품명, 스팸성 키워드 입력 시 관리자에 의해 판매 금지될 수 있습니다.
+<!-- 							 -->유명 상품 유사문구를 무단으로 도용하여 ~스타일, ~st 등과 같이 기재하는 경우 별도 고지 없이 제재될 수 있습니다.
+<!-- 							 -->상품명을 검색최적화 가이드에 잘 맞게 입력하면 검색 노출에 도움이 될 수 있습니다.
+							</pre>
+						</div>
+					</li>
+					<li>
+						<label>판매가</label>
+						<input type="text" name="price" placeholder="숫자만 입력" ><span>원</span>
+					</li>
+					<li>
+						<label>할인</label>
+						<dl>
+							<dt>
+								<input type="radio">할인설정
+								<input type="radio" checked="checked">설정없음
+							</dt>
+							<dd></dd>
+						</dl>
+					</li>
+					<li>
+						<label>부가세</label>
+						<select>
+							<option>과세상품</option>
+							<option>면세상품</option>
+							<option>영세상품</option>
+						</select>
+					</li>
+					<li>
+						<label>재고수량</label>
+						<input type="text" name="stock" placeholder="숫자만 입력"><span>개</span>
+					</li>
+					<li>
+						<label>상품이미지</label>
+						<div class="def-img">
+							<span>대표이미지</span>
+							<div class="img-wrap">
+								<label class="pre-img"><input type="file" onchange="tempUpload(this)"></label>
+								<input type="hidden" class="tempKey" name="tempKey">
+								<input type="hidden" class="orgName" name="orgName">
+								<input type="hidden" class="newName" name="newName">
+								<input type="hidden" class="def" name="def" value="true"> <!-- on, true , 1 아무거나 넘겨도 bool에 넘겨짐 -->
+								<pre><!-- 
+									 -->권장 크기 : 1000 X 1000 (윈도대상 750 X 1000)
+<!-- 							 -->대표이미지 기준 1000 X 1000 이상 이미지 등록하시면, 이미지 확대기능이 제공 됩니다..
+<!-- 							 -->쇼핑검색에 노출되지 않는 경우 가이드를 확인해주세요.
+								</pre>
+							</div>
+							
+						</div>
+						<div>
+							<span>추가이미지(최대 5장)</span>
+							<div class="add-img flex">
+								<div class="img-wrap">
+									<label class="pre-img"><input type="file" onchange="tempUpload(this)"></label>
+									<input type="hidden" class="tempKey" name="tempKey">
+									<input type="hidden" class="orgName" name="orgName">
+									<input type="hidden" class="newName" name="newName">
+									<input type="hidden" class="def" name="def" value="false">
+								</div>
+							</div>
+							<pre><!-- 
+								 -->권장 크기 : 1000 X 1000 (윈도대상 750 X 1000)
+<!-- 							 -->대표이미지 기준 1000 X 1000 이상 이미지 등록하시면, 이미지 확대기능이 제공 됩니다..
+<!-- 							 -->쇼핑검색에 노출되지 않는 경우 가이드를 확인해주세요.
+							</pre>
+						</div>
+					</li>
+					<li>
+						<label>상세설명</label>
+						<textarea name="content"></textarea>
+					</li>
+					
+					<li>
+						<button type="button" onclick="goodsSummited()">상품등록</button>
+					</li>
+				</ul>
+			</form>
+		</div>
+	</section>
+	<script type="text/javascript">
+	
+	/* ajax 사용시 security csrf 적용 */
+		var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
+		$(document).ajaxSend(function(e, xhr, options) {
+			xhr.setRequestHeader(header, token);
+		});
+		$.ajax({
+			url:"/admin/category/0",
+			type:"PATCH",
+			success:function(result){
+				$("#form-goods .category").html(result);
+			}
+		});
+	</script>
+</html>

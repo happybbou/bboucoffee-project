@@ -1,0 +1,85 @@
+@charset "UTF-8";
+/* /////////////////////board-list  start/////////////////// */
+
+#board-list > li > div:nth-child(1){width: 100px;}
+#board-list > li > div:nth-child(2){width:  150px;}
+#board-list > li > div:nth-child(3){width:  100px;}
+#board-list > li > div:nth-child(4){width:  100px;}
+#board-list > li > div:nth-child(5){width:  200px;}
+
+main{
+	margin: 20px 100px;
+}
+.write{
+	text-align: end;
+	margin-bottom: 20px;
+}
+
+a{text-decoration: none;
+	margin:5px;
+}
+
+#board-list > li{
+	border-bottom: 1px solid #a9a9a9;
+	padding: 20px;
+}
+
+body > main > div.num {
+	margin-top : 30px;
+	position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+body > main > div.num > div > .pnum{
+	border: 1px solid #a9a9a9;
+	position: relative;
+	padding : 10px 15px;
+}
+/* ////////////////////////////////////////////////////// */
+/* /////////////////////board-list end/////////////////// */
+/* ////////////////////////////////////////////////////// */
+
+
+
+/* ///////////////// board-detail start////////////////////// */
+
+
+#reply > ul > li> p {
+	margin-right: 15px;
+}
+#basic>li{
+	border-radius : 5px;
+	/* background-color: rgba(255,218,198,0.5); */
+	padding: 20px;
+}
+#basic>li{
+	border: 1px solid rgba(102,52,0,0.5);
+}
+
+#basic > li > label{
+	margin-right: 20px;
+}
+#btn-update{
+	margin-top: 20px;
+    padding: 10px;
+    width: 100px;
+    border: 1px solid #e9e9e9;
+    background-color: rgba(102,52,0,0.5);
+    color: #fff;
+    margin-right: 10px; 
+    
+}
+.btn-stt{
+	margin-top: 20px;
+    padding: 10px;
+    width: 100px;
+    border: 1px solid #e9e9e9;
+     background-color: rgba(102,52,0,0.5);
+     color: #fff;
+}
+
+/* ////////////////////////////////////////////////////// */
+/* /////////////////////board-detail end/////////////////// */
+/* ////////////////////////////////////////////////////// */
